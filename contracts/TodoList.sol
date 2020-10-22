@@ -27,7 +27,6 @@ contract TodoList {
     createTask("First Task Created");
     createTask("Second Task Created");
   }
-
   function createTask(string memory _content) public {
     tasks[taskCount] = Task(taskCount, _content, false);
     emit TaskCreated(taskCount, _content, false);
