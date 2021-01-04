@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
 
   async loadBlockChainData() {
-    const web3 = new Web3("HTTP://127.0.0.1:8545");
+    const web3 = new Web3(Web3.givenProvider || "HTTP://127.0.0.1:8545");
 
     const accounts = await web3.eth.getAccounts();
     this.account = accounts[0];
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
 
   disabled = false
   createTask() {
-    this.todoListApi.methods.createTask(this.createForm.value.task).send({ from: this.account }).once('receipt', (receipt) => {
+    this.todoListApi.methods.createTask(this.createForm.value.task).send({ from: this.account,to,gasLimit,gasPrice }).once('receipt', (receipt) => {
       console.log(receipt, 'receipt');
       this.createForm.reset();
       this.listOfTasks();
